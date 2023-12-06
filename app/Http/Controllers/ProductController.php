@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
-use App\Models\product;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -13,7 +13,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+       // dd($products);
+        return view('product', ['products'=>$products]);
     }
 
     /**
