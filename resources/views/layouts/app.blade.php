@@ -29,7 +29,7 @@
                         <a href="{{ route('product') }}" class="ml-6 flex items-center text-lg text-gray-600 hover:text-gray-900">
                             PRODUCTS
                         </a>
-                        <a href="{{ route('product') }}" class="ml-6 flex items-center text-lg text-gray-600 hover:text-gray-900">
+                        <a href="{{ route('product.create') }}" class="ml-6 flex items-center text-lg text-gray-600 hover:text-gray-900">
                             ADD PRODUCT
                         </a>
 

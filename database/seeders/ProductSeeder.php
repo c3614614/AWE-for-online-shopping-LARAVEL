@@ -17,6 +17,7 @@ class ProductSeeder extends Seeder
             ['artist' => 'The Jam', 'title' => 'Modern World','price' => 399],
             ['artist' => 'Amy Winehouse', 'title' => 'Back to Black','price' => 299],
             ['artist' => 'Amy Winehouse', 'title' => 'Back to Black','price' => 67],
+            ['artist' => 'lil Durk', 'title' => 'on my life','price' => 78],
         ];
 
         foreach($products as $product) {
