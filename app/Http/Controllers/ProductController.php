@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct() 
+    {
+       // $this->authorizeResource(Product::class, 'product');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -54,6 +58,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        $this->authorize('create', Product::class);  
 
 
         $validatedData = $request->validate([
@@ -63,7 +68,7 @@ class ProductController extends Controller
 
         ]);
         Product::create($validatedData);
-        return redirect()->route('product.index');
+        return redirect()->route('home');
     }
 
     /**

@@ -13,7 +13,7 @@ class ProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -27,10 +27,12 @@ class ProductPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
-    {
-        //
-    }
+   public function create(User $user) : Response //NOTE THE NEW RETURN TYPE - IT IS STILL A PASS/FAIL TYPE RETURN
+{
+        return $user->is_admin == 1 
+                 ? Response::allow() 
+                 : Response::denyAsNotFound();
+}
 
     /**
      * Determine whether the user can update the model.

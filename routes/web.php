@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProductController::class, 'index'])->name('product.index');
+Route::get('/', [ProductController::class, 'index'])->name('home');
 
 
 Route::get('/products', [ProductController::class, 'index'])->name('product');
@@ -25,9 +25,12 @@ Route::get('/product/create', [ProductController::class, 'create'])->name('produ
 
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
-Route::get('/products/create', [ProductController::class, 'product-form'])->name('product-form');
+//Route::get('/products/create', [ProductController::class, 'product-form'])->middleware('can:create, App\Models\Product')->name('product-form');
 
 
+
+
+Route::get('/product/create', [ProductController::class, 'create'])->middleware('can:create, App\Models\Product')->name('create');
 
 
 
