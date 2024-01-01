@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="{{ asset('Js/my.js') }}"></script>
+
 </head>
 <body class="font-sans antialiased">
     <header class="flex justify-between border-b-2 border-double">

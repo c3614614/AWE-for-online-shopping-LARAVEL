@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
        // dd($products);
-        return view('product', ['products'=>$products]);
+        return view('products', ['products'=>$products]);
     }
 
     /**
@@ -30,26 +30,8 @@ class ProductController extends Controller
    
     public function create()
     {
+       
         return view('components.product-form');
-        
-        
-    
-        // Creating a new product instance
-        $product = new Product();
-        $product->artist = ['artist'];
-        $product->title = ['title'];
-        $product->price = ['price'];
-        // Assign other properties accordingly
-    
-        // Saves the product to the database
-        $product->save();
-    
-        // Redirect to a route or view after saving the product
-        // For example, if you want to redirect to a specific route:
-        // return redirect()->route('product.index');
-    
-        // Or if you want to load a different view
-        return view('product-card');
     }
     
 
@@ -58,7 +40,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $this->authorize('create', Product::class);  
+        //$this->authorize('create', Product::class);  
 
 
         $validatedData = $request->validate([
@@ -67,40 +49,58 @@ class ProductController extends Controller
             'price' => 'required|numeric',
 
         ]);
-        Product::create($validatedData);
-        return redirect()->route('home');
+
+         $product = new Product([
+            'artist' => $validatedData['artist'],
+            'title' => $validatedData['title'],
+            'price' => $validatedData['price'],
+        ]);
+        $product->save();
+        return redirect()->route('product.index');  
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(product $product)
+    public function show($id)
     {
-        return view('product', ['product'=>$product]);
+        $product = Product::find($id);
+        return view('product', ['product' => $product]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(product $product)
+    public function edit(int $id)
     {
-        //
+        $product = Product::find($id);
+        return view('components.product-edit-form', ['product'=>$product]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateproductRequest $request, product $product)
+    public function update(UpdateProductRequest $request, int $id)
     {
-        //
+        $product = Product::find($id);
+        $product->artist = $request->artist;
+        $product->title = $request->title;
+        $product->price = $request->price;
+        $product->save();
+
+        return redirect()->route('product.index')->with('success', 'Product updated successfully.'); 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(product $product)
+    public function destroy(Product $product)
     {
-        //
+        $this->authorize('delete', $product);
+
+        $product->delete();
+    
+        return response()->json(["msg" => "success"]);
     }
 
 

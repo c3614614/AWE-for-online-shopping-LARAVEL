@@ -9,7 +9,7 @@ window.onload = function () {
         if (e.target.matches('button.select-product')) {
             getProductByID(e.target.value);
         }
-        if (e.target.matches('button.update-product')) {
+        if (e.target.matches('button.edit-product')) {
             updateProductByID(e.target.value);
         }
         if (e.target.matches('button.buy-product')) {
@@ -31,7 +31,7 @@ function updateProductByID(id) {
 }
 
 async function filterByProductType(id) {
-    if (id == 0) window.location = "/products/"
+    if (id == 0) window.location = "/product/"
     else {
         try {
             const response = await axios.get('/filter',
