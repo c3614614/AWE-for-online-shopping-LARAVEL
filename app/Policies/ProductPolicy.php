@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\product;
+use GuzzleHttp\Psr7\Response as Psr7Response;
 use Illuminate\Auth\Access\Response;
 
 class ProductPolicy
@@ -21,7 +22,7 @@ class ProductPolicy
      */
     public function view(User $user, product $product): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -39,15 +40,17 @@ class ProductPolicy
      */
     public function update(User $user, product $product): bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, product $product): bool
+    public function delete(User $user, product $product): Response
     {
-        //
+        return $user->is_admin == 1 
+        ? Response::allow()
+        : Response::deny('You do not have permission to delete this product.');
     }
 
     /**
@@ -55,7 +58,7 @@ class ProductPolicy
      */
     public function restore(User $user, product $product): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -63,6 +66,6 @@ class ProductPolicy
      */
     public function forceDelete(User $user, product $product): bool
     {
-        //
+        return true;
     }
 }

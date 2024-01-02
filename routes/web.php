@@ -52,6 +52,5 @@ Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name
 
 
 
-
 require __DIR__.'/auth.php';
 ?>

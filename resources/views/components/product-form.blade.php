@@ -18,8 +18,16 @@
     @endif
     <form method="POST" action="{{ route('product.store') }}">
     @csrf    
+    
         <div class="p-2 m-2 rounded-lg shadow-lg bg-gray-50 border-2 border-blue-900 max-w-md">
             <div class="font-bold text-sm mb-2">
+            
+            <label for="product_type">Type:</label>
+            <select name="product_type" id="product_type">
+            <option value="Book">Book</option>
+            <option value="CD">CD</option>
+            <option value="Game">Game</option>
+        </select>
                 <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="title" name="title" type="text" placeholder="title">
             </div>
             <p class="text-gray-700 text-sm">

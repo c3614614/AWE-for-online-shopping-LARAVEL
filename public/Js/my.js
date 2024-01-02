@@ -1,11 +1,15 @@
 window.onload = function () {
-
     document.addEventListener('change', e => {
         if (e.target.matches('select.select-box')) {
             filterByProductType(e.target.value);
         }
     });
+
     document.addEventListener('click', e => {
+        if (e.target.classList.contains('delete-product')) {
+            const productId = e.target.getAttribute('value');
+            deleteProductByID(productId);
+        }
         if (e.target.matches('button.select-product')) {
             getProductByID(e.target.value);
         }
@@ -46,5 +50,21 @@ async function filterByProductType(id) {
         } catch (error) {
             console.error(error);
         }
+    }
+}
+
+async function deleteProductByID(id) {
+    try {
+        const response = await axios.delete("/product/" + id);
+
+        if (response.data.msg === "success") {
+            alert("Successfully Deleted");
+            window.location = "/";
+        } else {
+            alert("Delete operation failed.");
+        }
+    } catch (error) {
+        console.error("Error deleting product:", error.response.data);
+        alert("An error occurred while deleting the product.");
     }
 }
