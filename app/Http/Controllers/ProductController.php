@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function __construct() 
     {
-       $this->authorizeResource(Product::class, 'product');
+      //$this->authorizeResource(Product::class, 'product');
     }
     /**
      * Display a listing of the resource.
@@ -45,35 +45,35 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        //$this->authorize('create', Product::class);  
-
-
         $validatedData = $request->validate([
             'artist' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'price' => 'required|numeric',
-
+            'product_type' => 'required', // Validate product_type field
         ]);
-
-         $product = new Product([
+    
+        $product = new Product([
             'artist' => $validatedData['artist'],
             'title' => $validatedData['title'],
             'price' => $validatedData['price'],
+            'product_type_id' => $validatedData['product_type'], // Save product_type_id
         ]);
+    
         $product->save();
-        return redirect()->route('product.index');  
+    
+        return redirect()->route('product.index')->with('success', 'Product added successfully.');  
     }
 
     /**
      * Display the specified resource.
      */
     public function show($id)
-    {
-        $product = Product::find($id);
-        return view('product', ['product' => $product]);
-    }
+{
+    $product = Product::with('productType')->find($id);
+    return view('product', ['product' => $product]);
+}
 
     /**
      * Show the form for editing the specified resource.

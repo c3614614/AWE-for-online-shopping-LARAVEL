@@ -22,11 +22,14 @@
         <div class="p-2 m-2 rounded-lg shadow-lg bg-gray-50 border-2 border-blue-900 max-w-md">
             <div class="font-bold text-sm mb-2">
             
-            <label for="product_type">Type:</label>
-            <select name="product_type" id="product_type">
-            <option value="Book">Book</option>
-            <option value="CD">CD</option>
-            <option value="Game">Game</option>
+            <div class="mb-4">
+        <label for="product_type" class="block text-gray-700 text-sm font-bold mb-2">Product Type:</label>
+        <select name="product_type" id="product_type" class="appearance-none w-full py-2 px-3 border border-gray-300 rounded-md leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300">
+            <option value="1">Book</option>
+            <option value="2">CD</option>
+            <option value="3">Game</option>
+        </select>
+    </div>
         </select>
                 <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="title" name="title" type="text" placeholder="title">
             </div>

@@ -7,12 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
-    protected $table = 'products';
-    protected $fillable = ['artist', 'title', 'price'];
+    protected $fillable = ['artist', 'title', 'price', 'product_type_id'];
 
-    public function ProductType()
+    public function productType()
     {
-        return $this-> belongsTo('App\Models\ProductType','product_type_id', 'id');
+        return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 }
