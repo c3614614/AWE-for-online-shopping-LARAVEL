@@ -88,15 +88,17 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateProductRequest $request, int $id)
-    {
-        $product = Product::find($id);
-        $product->artist = $request->artist;
-        $product->title = $request->title;
-        $product->price = $request->price;
-        $product->save();
+{
+    $product = Product::find($id);
+    $product->artist = $request->artist;
+    $product->title = $request->title;
+    $product->price = $request->price;
+    $product->product_type_id = $request->product_type; // Update product_type_id
 
-        return redirect()->route('product.index')->with('success', 'Product updated successfully.'); 
-    }
+    $product->save();
+
+    return redirect()->route('product.index')->with('success', 'Product updated successfully.'); 
+}
 
     /**
      * Remove the specified resource from storage.

@@ -8,10 +8,11 @@
         <label for="product_type" class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
     <div class="relative">
         <select name="product_type" id="product_type" class="appearance-none w-full py-2 px-3 border border-gray-300 rounded-md leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300">
-    <option value="Book" {{ old('product_type', $product->product_type) == '1' ? 'selected' : '' }}>Book</option>
-    <option value="CD" {{ old('product_type', $product->product_type) == '2' ? 'selected' : '' }}>CD</option>
-    <option value="Game" {{ old('product_type', $product->product_type) == '3' ? 'selected' : '' }}>Game</option>
-</select>
+            <option value="1" {{ old('product_type', $product->product_type_id) == 1 ? 'selected' : '' }}>Book</option>
+            <option value="2" {{ old('product_type', $product->product_type_id) == 2 ? 'selected' : '' }}>CD</option>
+            <option value="3" {{ old('product_type', $product->product_type_id) == 3 ? 'selected' : '' }}>Game</option>
+        </select>
+    </div>
 
         <div class="mb-4">
                 <label for="artist" class="block text-gray-700 text-sm font-bold mb-2">Artist/Author/Producer:</label>
