@@ -21,6 +21,13 @@ class ProductController extends Controller
         $products = Product::all();
        // dd($products);
         return view('products', ['products'=>$products]);
+
+        /**  if(Route::current()->getName()=='Home')
+         * $products = Product::inRandomOrder()->limit(2)->get();
+        *else $products = Product::all();
+        
+        *return view('products', ['products'=>$products]);
+     */
     }
 
     /**

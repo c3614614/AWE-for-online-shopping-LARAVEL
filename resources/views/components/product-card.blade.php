@@ -1,4 +1,7 @@
 <div class="p-2 m-2 rounded-lg bg-gray-50 border-2 border-blue-900 max-w-md">
+
+    <p class="text-lg font-bold"> {{ $product->ProductType->type }}</p>
+
     <p class="text-lg font-bold">Artist: {{ $product->artist }}</p>
     <p class="text-lg font-bold">Title: {{ $product->title }}</p>
     <p class="text-lg font-bold">Price: {{ $product->price }}</p>
