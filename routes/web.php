@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/', [ProductController::class, 'index'])->name('product.index');
-//Route::get('/', [ProductController::class, 'index'])->name('product');
+Route::get('/home', [ProductController::class, 'homepage'])->name('home');
 
 
 Route::post('/product/create', [ProductController::class, 'create'])->middleware('can:create, App\Models\Product')->name('product.create');

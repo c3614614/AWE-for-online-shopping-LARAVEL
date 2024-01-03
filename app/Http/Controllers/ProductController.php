@@ -21,17 +21,17 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-       // dd($products);
+     
         return view('products', ['products'=>$products]);
 
-        /**  if(Route::current()->getName()=='Home')
-         * $products = Product::inRandomOrder()->limit(2)->get();
-        *else $products = Product::all();
-        
-        *return view('products', ['products'=>$products]);
-     */
     }
 
+    public function homepage(Request $request)
+    {
+        $products = Product::inRandomOrder()->limit(10)->get();
+
+        return view('products', ['products' => $products]);
+    }
     /**
      * Show the form for creating a new resource.
      */
