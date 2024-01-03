@@ -2,10 +2,9 @@
     <p class="text-lg font-bold"> {{ $product->ProductType->type }}</p>
 
     <!-- Display the product image -->
-    @if($product->image)
-        <img src="{{ asset('storage/images/' . $product->image) }}" alt="Product Image">
+    @if($product->imagename) <!-- Update this line -->
+        <img src="{{ asset('storage/images/' . $product->imagename) }}" alt="Product Image"> <!-- Update this line -->
     @else
-        <!-- Display the actual path to your default image -->
         <img src="{{ asset('images/no_image.png') }}" alt="Default Image">
     @endif
 

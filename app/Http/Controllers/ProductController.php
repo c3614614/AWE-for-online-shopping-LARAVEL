@@ -53,15 +53,15 @@ class ProductController extends Controller
             'artist' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'product_type' => 'required', // Validate product_type field
-            'productImage' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image type and size
+            'product_type' => 'required',
+            'productImage' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
         $product = new Product([
             'artist' => $validatedData['artist'],
             'title' => $validatedData['title'],
             'price' => $validatedData['price'],
-            'product_type_id' => $validatedData['product_type'], // Save product_type_id
+            'product_type_id' => $validatedData['product_type'],
         ]);
     
         if ($request->hasFile('productImage')) {
@@ -69,7 +69,10 @@ class ProductController extends Controller
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/images', $imageName);
     
-            $product->image = $imageName;
+            // Check the image name before assigning it to the product
+            // This step is for verification/debugging purposes
+            //dd($imageName); // Output the image name to ensure it's not empty
+            $product->imagename = $imageName;
         }
     
         $product->save();
@@ -100,18 +103,25 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateProductRequest $request, int $id)
-{
-    $product = Product::find($id);
-    $product->artist = $request->artist;
-    $product->title = $request->title;
-    $product->price = $request->price;
-    $product->product_type_id = $request->product_type; // Update product_type_id
-
-    $product->save();
-
-    return redirect()->route('product.index')->with('success', 'Product updated successfully.'); 
-}
-
+    {
+        $product = Product::find($id);
+        $product->artist = $request->artist;
+        $product->title = $request->title;
+        $product->price = $request->price;
+        $product->product_type_id = $request->product_type; // Update product_type_id
+    
+        // Handle image update
+        if ($request->hasFile('productImage')) {
+            $image = $request->file('productImage');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $product->imagename = $imageName;
+        }
+    
+        $product->save();
+    
+        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      */

@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            //
-            $table->string('imagename')->default('no_image.png');
+            $table->string('imagename')->default('no_image.png'); // Change 'image' to 'imagename'
         });
     }
 
@@ -23,8 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            //
-            $table->dropColumn('imagename');
+            $table->dropColumn('imagename'); // Change 'image' to 'imagename'
         });
     }
 };

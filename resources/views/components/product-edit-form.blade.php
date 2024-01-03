@@ -1,9 +1,10 @@
 <x-app-layout>
   
 
-    <form method="POST" action="{{route('product.update', $product->id) }}">
-        @method('PUT')   
+<form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
+        @method('PUT')
         @csrf
+
 
         <label for="product_type" class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
     <div class="relative">
@@ -28,6 +29,12 @@
                 <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Price:</label>
                 <input type="number" name="price" id="price" value="{{ old('price', $product->price / 100) }}" class="w-full px-3 py-2 border rounded-md placeholder-gray-400 focus:outline-none focus:ring focus:border-blue-300" required>
             </div>
+
+            <div class="mb-4">
+            <label for="productImage" class="block text-gray-700 text-sm font-bold mb-2">Product Image:</label>
+            <input type="file" id="productImage" name="productImage" class="mt-1 p-2 border border-gray-300 rounded-md">
+            <p class="text-xs text-gray-500 mt-1">Leave empty to keep the existing image.</p>
+        </div>
 
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300" >Update Product</button>
 
