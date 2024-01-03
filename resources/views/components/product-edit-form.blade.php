@@ -16,7 +16,7 @@
     </div>
 
         <div class="mb-4">
-                <label for="artist" class="block text-gray-700 text-sm font-bold mb-2">Artist/Author/Producer:</label>
+                <label for="artist" class="block text-gray-700 text-sm font-bold mb-2">Artist/Author/Console:</label>
                 <input type="text" name="artist" id="artist" value="{{ old('artist', $product->artist) }}" class="w-full px-3 py-2 border rounded-md placeholder-gray-400 focus:outline-none focus:ring focus:border-blue-300" required>
             </div>
 
