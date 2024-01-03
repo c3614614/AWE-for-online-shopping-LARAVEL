@@ -1,6 +1,13 @@
 <div class="p-2 m-2 rounded-lg bg-gray-50 border-2 border-blue-900 max-w-md">
-
     <p class="text-lg font-bold"> {{ $product->ProductType->type }}</p>
+
+    <!-- Display the product image -->
+    @if($product->image)
+        <img src="{{ asset('storage/images/' . $product->image) }}" alt="Product Image">
+    @else
+        <!-- Display the actual path to your default image -->
+        <img src="{{ asset('images/no_image.png') }}" alt="Default Image">
+    @endif
 
     <p class="text-lg font-bold">Artist: {{ $product->artist }}</p>
     <p class="text-lg font-bold">Title: {{ $product->title }}</p>
@@ -17,3 +24,4 @@
         @endcan
     @endif
 </div>
+
